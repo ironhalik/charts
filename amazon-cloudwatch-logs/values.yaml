@@ -1,0 +1,67 @@
+# Default values for amazon-cloudwatch-logs chart.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+awsRegion: ""
+
+clusterName: ""
+
+metrics:
+  enabled: false
+  port: 2020
+
+logs:
+  groupBaseName:
+  # Valid values are: "", 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827, 3653
+  retentionDays: ""
+  readFromHead: false
+  readFromTail: true
+
+image:
+  repository: public.ecr.aws/aws-observability/aws-for-fluent-bit
+  # Overrides the image tag whose default is v{{ .Chart.AppVersion }}
+  tag: ""
+  pullPolicy: IfNotPresent
+  pullSecrets: []
+
+# - name: registrySecretName
+
+nameOverride: ""
+fullnameOverride: ""
+
+hostNetwork:
+  enabled: true
+
+serviceAccount:
+  create: true
+  # Annotations to add to the service account.
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+  # The list of secrets mountable by this service account.
+  # See https://kubernetes.io/docs/reference/labels-annotations-taints/#enforce-mountable-secrets
+  secrets: []
+
+rbac:
+  # Specifies whether RBAC resources should be created
+  create: true
+
+commonLabels: {}
+
+resources:
+  requests:
+    cpu: 0.05
+    memory: 150Mi
+  limits:
+    cpu: 0.5
+    memory: 400Mi
+
+tolerations:
+  - key: node-role.kubernetes.io/master
+    operator: Exists
+    effect: NoSchedule
+  - operator: "Exists"
+    effect: "NoExecute"
+  - operator: "Exists"
+    effect: "NoSchedule"

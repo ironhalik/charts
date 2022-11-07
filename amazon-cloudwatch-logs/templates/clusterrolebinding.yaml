@@ -1,0 +1,16 @@
+{{- if .Values.rbac.create -}}
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: {{ printf "system:%s" (include "amazon-cloudwatch-logs.fullname" .) }}
+  labels:
+    {{- include "amazon-cloudwatch-logs.labels" . | nindent 4 }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: system:{{ template "amazon-cloudwatch-logs.fullname" . }}
+subjects:
+  - kind: ServiceAccount
+    name: {{ include "amazon-cloudwatch-logs.serviceAccountName" . }}
+    namespace: {{ .Release.Namespace }}
+{{- end -}}

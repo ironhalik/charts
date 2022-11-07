@@ -1,0 +1,113 @@
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: {{ template "amazon-cloudwatch-logs.fullname" . }}
+  labels:
+    {{- include "amazon-cloudwatch-logs.labels" . | nindent 4 }}
+spec:
+  selector:
+    matchLabels:
+      {{- include "amazon-cloudwatch-logs.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "amazon-cloudwatch-logs.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.image.pullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "amazon-cloudwatch-logs.serviceAccountName" . }}
+      {{- if .Values.hostNetwork.enabled }}
+      hostNetwork: true
+      {{- end }}
+      containers:
+        - name: fluent-bit
+          image: {{ include "amazon-cloudwatch-logs.image" . }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: AWS_REGION
+              value: {{ .Values.awsRegion }}
+            - name: CLUSTER_NAME
+              value: {{ .Values.clusterName }}
+            - name: HTTP_SERVER
+              {{- if .Values.metrics.enabled }}
+              value: "On"
+              {{ else }}
+              value: "Off"
+              {{- end }}
+            - name: HTTP_PORT
+              value: {{ .Values.metrics.port | default "2020" | quote }}
+            - name: LOG_GROUP_BASE_NAME
+              value: {{ .Values.logs.groupBaseName | default (printf "/aws/eks/%s" .Values.clusterName) | trimSuffix "/" }}
+            - name: LOG_RETENTION_DAYS
+              value: {{ .Values.logs.retentionDays | default "" | quote }}
+            - name: READ_FROM_HEAD
+              {{- if .Values.logs.readFromHead }}
+              value: "On"
+              {{- else }}
+              value: "Off"
+              {{- end }}
+            - name: READ_FROM_TAIL
+              {{- if .Values.logs.readFromTail }}
+              value: "On"
+              {{- else }}
+              value: "Off"
+              {{- end }}
+            - name: HOST_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
+            - name: HOSTNAME
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.name
+          {{- with .Values.resources }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          volumeMounts:
+            # Please don't change below read-only permissions
+            - name: fluentbitstate
+              mountPath: /var/fluent-bit/state
+            - name: varlog
+              mountPath: /var/log
+              readOnly: true
+            - name: varlibdockercontainers
+              mountPath: /var/lib/docker/containers
+              readOnly: true
+            - name: fluent-bit-config
+              mountPath: /fluent-bit/etc/
+            - name: runlogjournal
+              mountPath: /run/log/journal
+              readOnly: true
+            - name: dmesg
+              mountPath: /var/log/dmesg
+              readOnly: true
+      terminationGracePeriodSeconds: 10
+      dnsPolicy: ClusterFirstWithHostNet
+      volumes:
+        - name: fluentbitstate
+          hostPath:
+            path: /var/fluent-bit/state
+        - name: varlog
+          hostPath:
+            path: /var/log
+        - name: varlibdockercontainers
+          hostPath:
+            path: /var/lib/docker/containers
+        - name: fluent-bit-config
+          configMap:
+            name: {{ template "amazon-cloudwatch-logs.fullname" . }}
+        - name: runlogjournal
+          hostPath:
+            path: /run/log/journal
+        - name: dmesg
+          hostPath:
+            path: /var/log/dmesg
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
