@@ -3,12 +3,12 @@ entries:
   amazon-cloudwatch-logs:
   - apiVersion: v2
     appVersion: 2.28.1
-    created: "2022-11-07T16:17:10.43644+01:00"
+    created: "2022-11-08T09:59:21.179907+01:00"
     description: Fluent bit daemonset provides the functionality to collect Container
       Insights Logs
-    digest: 32985dc298f13710567e0d35f3bc9875a05c24cd5533fd0d075e6b2da3141769
+    digest: d9a57e6f20462e617a1003cc342a5d7068153545a29cc877c9a0cc575f1fdb02
     home: https://github.com/ironhalik/charts/amazon-cloudwatch-logs
-    icon: https://raw.githubusercontent.com/ironhalik/charts/master/amazon-cloudwatch-logs/fluentbit_logo.jpg
+    icon: https://raw.githubusercontent.com/ironhalik/charts/main/amazon-cloudwatch-logs/fluentbit_logo.jpg
     keywords:
     - kubernetes
     - cloudwatch
@@ -21,6 +21,6 @@ entries:
     - https://github.com/aws/aws-for-fluent-bit
     type: application
     urls:
-    - https://ironhalik.github.io/charts/amazon-cloudwatch-logs-0.1.0.tgz
+    - https://ironhalik.github.io/charts/pkg/amazon-cloudwatch-logs-0.1.0.tgz
     version: 0.1.0
-generated: "2022-11-07T16:17:10.435838+01:00"
+generated: "2022-11-08T09:59:21.17927+01:00"

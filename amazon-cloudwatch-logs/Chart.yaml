@@ -10,7 +10,7 @@ keywords:
   - aws
   - logs
 home: https://github.com/ironhalik/charts/amazon-cloudwatch-logs
-icon: https://raw.githubusercontent.com/ironhalik/charts/master/amazon-cloudwatch-logs/fluentbit_logo.jpg
+icon: https://raw.githubusercontent.com/ironhalik/charts/main/amazon-cloudwatch-logs/fluentbit_logo.jpg
 sources:
   - https://github.com/ironhalik/charts/amazon-cloudwatch-logs
   - https://github.com/fluent/fluent-bit
