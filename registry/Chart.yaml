@@ -1,0 +1,16 @@
+apiVersion: v2
+name: registry
+description: Basic chart for running docker registry, based on minikube registry addon
+type: application
+version: 0.1.0
+appVersion: 2.8.2
+keywords:
+  - kubernetes
+  - registry
+  - docker
+home: https://github.com/ironhalik/charts/registry
+icon: https://raw.githubusercontent.com/ironhalik/charts/main/registry/registry_logo.jpg
+sources:
+  - https://github.com/ironhalik/charts/registry
+  - https://github.com/kubernetes/minikube/tree/master/deploy/addons/registry
+

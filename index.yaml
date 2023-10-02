@@ -3,7 +3,7 @@ entries:
   amazon-cloudwatch-logs:
   - apiVersion: v2
     appVersion: 2.28.1
-    created: "2022-11-08T09:59:21.179907+01:00"
+    created: "2023-10-02T12:05:44.922925+02:00"
     description: Fluent bit daemonset provides the functionality to collect Container
       Insights Logs
     digest: d9a57e6f20462e617a1003cc342a5d7068153545a29cc877c9a0cc575f1fdb02
@@ -21,6 +21,27 @@ entries:
     - https://github.com/aws/aws-for-fluent-bit
     type: application
     urls:
-    - https://ironhalik.github.io/charts/pkg/amazon-cloudwatch-logs-0.1.0.tgz
+    - pkg/amazon-cloudwatch-logs-0.1.0.tgz
     version: 0.1.0
-generated: "2022-11-08T09:59:21.17927+01:00"
+  registry:
+  - apiVersion: v2
+    appVersion: 2.8.2
+    created: "2023-10-02T12:05:44.923365+02:00"
+    description: Basic chart for running docker registry, based on minikube registry
+      addon
+    digest: 07c716dbb2fa106e14d37514f8bff0f4eb5dc7d11e2b79668ee2432649cc44bd
+    home: https://github.com/ironhalik/charts/registry
+    icon: https://raw.githubusercontent.com/ironhalik/charts/main/registry/registry_logo.jpg
+    keywords:
+    - kubernetes
+    - registry
+    - docker
+    name: registry
+    sources:
+    - https://github.com/ironhalik/charts/registry
+    - https://github.com/kubernetes/minikube/tree/master/deploy/addons/registry
+    type: application
+    urls:
+    - pkg/registry-0.1.0.tgz
+    version: 0.1.0
+generated: "2023-10-02T12:05:44.922322+02:00"
