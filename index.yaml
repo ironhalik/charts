@@ -3,7 +3,7 @@ entries:
   amazon-cloudwatch-logs:
   - apiVersion: v2
     appVersion: 2.28.1
-    created: "2024-07-19T19:22:50.853417+02:00"
+    created: "2024-07-20T02:30:00.871831+02:00"
     description: Fluent bit daemonset provides the functionality to collect Container
       Insights Logs
     digest: d9a57e6f20462e617a1003cc342a5d7068153545a29cc877c9a0cc575f1fdb02
@@ -25,8 +25,17 @@ entries:
     version: 0.1.0
   clamapi:
   - apiVersion: v1
+    appVersion: 1.3.0
+    created: "2024-07-20T02:30:00.872569+02:00"
+    description: Simple API service allowing you to scan files using ClamAV
+    digest: 3fe81ddb0e0833e22fe767ff1ebefc07b42947b31155dd79e5060ecc6ed6cdf6
+    name: clamapi
+    urls:
+    - pkg/clamapi-1.0.3.tgz
+    version: 1.0.3
+  - apiVersion: v1
     appVersion: 1.2.0
-    created: "2024-07-19T19:22:50.853864+02:00"
+    created: "2024-07-20T02:30:00.872352+02:00"
     description: Simple API service allowing you to scan files using ClamAV
     digest: 0ecad197e91d129d42587c3ed8c7b5a5b5d6549546f95cf1a9dd869da999e207
     name: clamapi
@@ -35,7 +44,7 @@ entries:
     version: 1.0.2
   - apiVersion: v1
     appVersion: 1.2.0
-    created: "2024-07-19T19:22:50.853634+02:00"
+    created: "2024-07-20T02:30:00.87209+02:00"
     description: Simple API service allowing you to scan files using ClamAV
     digest: 4760e93a868fb52b8e21cd87b82f6bf8862186152e060d427cf3f83dd574f0a0
     name: clamapi
@@ -45,7 +54,7 @@ entries:
   registry:
   - apiVersion: v2
     appVersion: 2.8.2
-    created: "2024-07-19T19:22:50.854295+02:00"
+    created: "2024-07-20T02:30:00.873002+02:00"
     description: Basic chart for running docker registry, based on minikube registry
       addon
     digest: 07c716dbb2fa106e14d37514f8bff0f4eb5dc7d11e2b79668ee2432649cc44bd
@@ -63,4 +72,4 @@ entries:
     urls:
     - pkg/registry-0.1.0.tgz
     version: 0.1.0
-generated: "2024-07-19T19:22:50.852857+02:00"
+generated: "2024-07-20T02:30:00.871195+02:00"
