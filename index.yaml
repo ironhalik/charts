@@ -25,6 +25,15 @@ entries:
     version: 0.1.0
   clamapi:
   - apiVersion: v1
+    appVersion: 1.7.0
+    created: "2026-11-18T23:32:51.757354+01:00"
+    description: Simple API service allowing you to scan files using ClamAV
+    digest: 4138e0ffaa33becf420cff189bc4f20f52e9ce416a426d974870bef2c7f7d0ed
+    name: clamapi
+    urls:
+    - pkg/clamapi-1.0.5.tgz
+    version: 1.0.5
+  - apiVersion: v1
     appVersion: 1.6.0
     created: "2026-11-18T23:13:57.286733+01:00"
     description: Simple API service allowing you to scan files using ClamAV
@@ -81,4 +90,4 @@ entries:
     urls:
     - pkg/registry-0.1.0.tgz
     version: 0.1.0
-generated: "2026-11-18T23:13:57.286009+01:00"
+generated: "2026-11-18T23:32:51.75592+01:00"
